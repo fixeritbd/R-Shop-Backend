@@ -18,9 +18,8 @@ import gotoTralliData from "./data/gotoTralliData.js";
 
 dotenv.config();
 
-const DB_URL = process.env.DB_URL;
+const DB_URL = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.ddej9.mongodb.net/rshop?retryWrites=true&w=majority`;
 
-// const DB_URL = "mongodb://localhost:27017/rshop";
 
 const app = express();
 
@@ -37,9 +36,7 @@ app.get("/", function (req, res) {
 app.get("/featurebanner", function (req, res) {
   res.send(featureBannerData);
 });
-// app.get("/products", function (req, res) {
-//   res.send(productData);
-// });
+
 
 app.get("/deal", function (req, res) {
   res.send(delData);
@@ -68,6 +65,7 @@ app.get("/recentviewed", function (req, res) {
 
 app.listen(8000, () => {
   console.log("server running on port 8000");
+
   mongoose.connect(DB_URL, () => {
     console.log("DB Connected!");
   });
