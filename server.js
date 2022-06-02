@@ -62,8 +62,8 @@ app.get("/gototralli", function (req, res) {
 app.get("/recentviewed", function (req, res) {
   res.send(recentViewed);
 });
-
-app.listen(8000, () => {
+const port = process.env.PORT || 8080;
+app.listen(port, () => {
   console.log("server running on port 8000");
 
   mongoose.connect(DB_URL, () => {
